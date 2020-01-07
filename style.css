@@ -1,4 +1,26 @@
+body{
+    background-color: #616a47;
+}
+
+header{
+    font-weight: center;
+    text-align: center;
+    margin: auto;
+}
+
 h1{
     color: white;
     background-color: #990000;
+}
+
+header span{
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px; 
+}
+
+header span:hover{
+    background-color: yellow;
 }
