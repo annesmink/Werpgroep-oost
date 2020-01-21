@@ -17,10 +17,11 @@ xhttp.onreadystatechange = function() {
 
 function getContent(file){
     if(file != "agenda"){
-        document.getElementById("content").innerHTML = "";
+        document.getElementById("content").innerHTML = '';
         return;
     }
-    xhttp.open("GET", file + ".html", true);
-    xhttp.send();
+    document.getElementById("content").innerHTML = '<object type="text/html" data="' + file + '.html" ></object>';
+    // xhttp.open("GET", file + ".html", true);
+    // xhttp.send();
 }
 </script>
