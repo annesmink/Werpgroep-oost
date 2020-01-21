@@ -1,16 +1,26 @@
-<html>
-    <meta charset="UTF-8">
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>Werpgroep oost</h1>
-            <span>info</span>
-            <span>team</span>
-            <span>agenda</span>
-            <span>contact</span>
-        </header>
-        
-    </body>
-</html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<header>
+    <h1>Werpgroep oost</h1>
+    <span onclick="getContent('info')">info</span>
+    <span onclick="getContent('team')">team</span>
+    <span onclick="getContent('agenda')">agenda</span>
+    <span onclick="getContent('contact')">contact</span>
+</header>
+<div id="content"></div>
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("content").innerHTML = this.responseText;
+    }
+};
+
+function getContent(file){
+    if(file != "agenda"){
+        document.getElementById("content").innerHTML = "";
+        return;
+    }
+    xhttp.open("GET", file + ".html", true);
+    xhttp.send();
+}
+</script>
