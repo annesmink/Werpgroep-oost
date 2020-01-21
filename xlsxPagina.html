@@ -13,10 +13,6 @@
           padding: 8px;
         }
 
-        tr:first-child {
-            width: 100%;
-        }
-
         tr:nth-child(even) {
           background-color: #dddddd;
         }
@@ -43,7 +39,7 @@ xhttp.onreadystatechange = function() {
         var maxHeight = split[1].slice(1);
         var minWidth = split[0].slice(0, 1);
         var currHeight = split[0].slice(1);
-        var table = "<tr><th>" + sheets[minWidth + currHeight].w + "</th></tr>"
+        var table = "<caption>" + sheets[minWidth + currHeight].w + "</caption>"
         for(currHeight++;currHeight <= maxHeight;currHeight++){
             var cellText = ""
             var unEmptyCell = false;
