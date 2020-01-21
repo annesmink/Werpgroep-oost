@@ -10,21 +10,24 @@ xhttp.onreadystatechange = function() {
         //just using the first sheet for this example
         var sheets = XLSX.read(data, {type:"array"}).Sheets["Kogelslinger wedstrijden"];
         console.log(sheets)
-        xlsxd = document.getElementById("xlsxDisplay");
         //find out width and height, will break if more then 26 width
         var split = sheets["!ref"].split(":");
         var maxWidth = split[1].slice(0, 1).charCodeAt(0);
         var maxHeight = split[1].slice(1);
         var minWidth = split[0].slice(0, 1);
         var currHeight = split[0].slice(1);
-        xlsxd.innerHTML += "<tr><th>" + sheets[minWidth + currHeight].w + "</th></tr>"
-        for(currHeight++;currHeight < maxHeight;currHeight++){
-            xlsxd.innerHTML += "<tr>"
-            for(var currWidth = minWidth.charCodeAt(0);currWidth < maxWidth;currWidth++){
-                xlsxd.innerHTML += "<th>" + sheets[ String.fromCharCode(currWidth) + currHeight].w + "</th>"
+        var table = "<tr><th>" + sheets[minWidth + currHeight].w + "</th></tr>"
+        for(currHeight++;currHeight <= maxHeight;currHeight++){
+            table += "<tr>"
+            for(var currWidth = minWidth.charCodeAt(0);currWidth <= maxWidth;currWidth++){
+                table += "<th>"
+                var cell = sheets[ String.fromCharCode(currWidth) + currHeight]
+                if(cell != undefined)table += sheets[ String.fromCharCode(currWidth) + currHeight].w
+                table += "</th>"
             }
-            xlsxd.innerHTML += "</tr>"
+            table += "</tr>"
         }
+        document.getElementById("xlsxDisplay").innerHTML = table;
     }
 };
 xhttp.open("GET", "Wedstrijden.xlsx", true);
