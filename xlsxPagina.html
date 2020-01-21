@@ -18,9 +18,9 @@ xhttp.onreadystatechange = function() {
         var minWidth = split[0].slice(0, 1);
         var currHeight = split[0].slice(1);
         xlsxd.innerHTML += "<tr><th>" + sheets[minWidth + currHeight].w + "</th></tr>"
-        for(currHeight++;currHeight <= maxHeight;currHeight++){
+        for(currHeight++;currHeight < maxHeight;currHeight++){
             xlsxd.innerHTML += "<tr>"
-            for(var currWidth = minWidth.charCodeAt(0);currWidth <= maxWidth;currWidth++){
+            for(var currWidth = minWidth.charCodeAt(0);currWidth < maxWidth;currWidth++){
                 xlsxd.innerHTML += "<th>" + sheets[ String.fromCharCode(currWidth) + currHeight].w + "</th>"
             }
             xlsxd.innerHTML += "</tr>"
