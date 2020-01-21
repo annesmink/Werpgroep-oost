@@ -1,41 +1,16 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-
-
+<script lang="javascript" src="dist/xlsx.full.min.js"></script>
 
 
 <script>
-
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText)
-        var workbook = XLSX.read(this.responseText, {type: 'binary'});
-        workbook.SheetNames.forEach(function(sheetName) {
-            // Here is your object
-            var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-            var json_object = JSON.stringify(XL_row_object);
-            console.log(json_object);
-        });
+        var data = new Uint8Array(this.responseText);
+        var workbook = XLSX.read(data, {type:"array"});
+        console.log(workbook)
     }
 };
 xhttp.open("GET", "Wedstrijden.xlsx", true);
+req.responseType = "arraybuffer"
 xhttp.send();
-
-
-// var reader = new FileReader();
-
-// reader.onload = function(e) {
-//     var data = e.target.result;
-//     var workbook = XLSX.read(data, {type: 'binary'});
-//     workbook.SheetNames.forEach(function(sheetName) {
-//     // Here is your object
-//     var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-//     var json_object = JSON.stringify(XL_row_object);
-//     console.log(json_object);
-
-//     });
-// };
-// reader.onerror = function(ex) {console.log(ex);};
-// reader.readAsBinaryString();
 </script>
