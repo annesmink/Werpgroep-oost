@@ -5,7 +5,7 @@
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        var data = new Uint8Array(this.responseText);
+        var data = new Uint8Array(this.response);
         var workbook = XLSX.read(data, {type:"array"});
         console.log(workbook)
     }
