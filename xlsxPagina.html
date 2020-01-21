@@ -17,6 +17,12 @@ xhttp.onreadystatechange = function() {
         var maxHeight = split[1].slice(1);
         var minWidth = split[0].slice(0, 1);
         var currHeight = split[0].slice(1);
+        console.log(split)
+        console.log(maxWidth)
+        console.log(maxHeight)
+        console.log(minWidth)
+        console.log(currHeight)
+        console.log(minWidth + currHeight)
         xlsxd.innerHTML += "<tr><th>" + xlsxd[minWidth + currHeight].w + "</th></tr>"
         for(currHeight++;currHeight <= maxHeight;currHeight++){
             xlsxd.innerHTML += "<tr>"
