@@ -13,6 +13,10 @@
           padding: 8px;
         }
 
+        tr:first-child {
+            width: 100%;
+        }
+
         tr:nth-child(even) {
           background-color: #dddddd;
         }
@@ -41,14 +45,19 @@ xhttp.onreadystatechange = function() {
         var currHeight = split[0].slice(1);
         var table = "<tr><th>" + sheets[minWidth + currHeight].w + "</th></tr>"
         for(currHeight++;currHeight <= maxHeight;currHeight++){
-            table += "<tr>"
+            var cellText = ""
+            var unEmptyCell = false;
             for(var currWidth = minWidth.charCodeAt(0);currWidth <= maxWidth;currWidth++){
-                table += "<th>"
+                cellText += "<td>"
                 var cell = sheets[ String.fromCharCode(currWidth) + currHeight]
-                if(cell != undefined)table += sheets[ String.fromCharCode(currWidth) + currHeight].w
-                table += "</th>"
+                if(cell != undefined){
+                    unEmptyCell = true;
+                    if(cell.r) cellText += cell.r;
+                    else cellText += cell.w;
+                }
+                cellText += "</td>"
             }
-            table += "</tr>"
+            if(unEmptyCell)table += "<tr>" + cellText + "</tr>"
         }
         document.getElementById("xlsxDisplay").innerHTML = table;
     }
