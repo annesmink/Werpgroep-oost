@@ -8,20 +8,11 @@
 </header>
 <div id="content"></div>
 <script>
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("content").innerHTML = this.responseText;
-    }
-};
-
 function getContent(file){
     if(file != "agenda"){
         document.getElementById("content").innerHTML = '';
         return;
     }
     document.getElementById("content").innerHTML = '<object type="text/html" data="' + file + '.html" ></object>';
-    // xhttp.open("GET", file + ".html", true);
-    // xhttp.send();
 }
 </script>

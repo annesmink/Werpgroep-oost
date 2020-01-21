@@ -24,3 +24,9 @@ header span{
 header span:hover{
     background-color: yellow;
 }
+
+#content object{
+    margin: auto;
+    display: block;
+    min-width: 70%;
+}
