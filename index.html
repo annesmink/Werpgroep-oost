@@ -16,8 +16,13 @@ function getContent(file){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseXML.innerHTML);
-            console.log(this.responseXML.getElementsByTagName("BODY")[0]);
+            //filter out style and script tags and put them in header
+            var xml = this.responseXML;
+            xml.getElementsByTagName("script").concat(xml.getElementsByTagName("style")).forEach(function(item){
+                console.log(item);
+                document.head.appendChild(item);
+                item.parentElement.removeChild(item);
+            });
             document.getElementById("content").appendChild(this.responseXML.getElementsByTagName("BODY")[0]);
         }
     };   
