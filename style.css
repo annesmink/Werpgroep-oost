@@ -26,20 +26,16 @@ header span:hover{
 }
 
 #content {
-    margin-top: 30px;
-}
-
-#content object{
     margin: auto;
-    display: block;
-    min-width: 70%;
-    height:80%;
+    margin-top: 50px;
+    max-width: 1000px;
 }
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 30px;
   }
   
   td, th {
