@@ -19,12 +19,10 @@ function getContent(file){
             //filter out style and script tags and put them in header
             var xml = this.responseXML;
             [...xml.getElementsByTagName("script")].forEach(function(item){
-                if(item.innerHTML){
-                    var newScript = document.createElement("script");
-                    var inlineScript = document.createTextNode(item.innerHTML);
-                    newScript.appendChild(inlineScript); 
-                    document.head.appendChild(newScript);
-                }else document.head.appendChild(item);
+                var newScript = document.createElement("script");
+                if(item.innerHTML) newScript.appendChild(document.createTextNode(item.innerHTML));
+                else newScript.src = item.src;
+                document.head.appendChild(newScript);
             });
             document.getElementById("content").appendChild(xml.getElementsByTagName("BODY")[0]);
         }
