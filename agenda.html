@@ -64,7 +64,8 @@ xhttp.onreadystatechange = function() {
         var data = new Uint8Array(this.response);
         //create the buttons
         var header = document.getElementById("agendaHeader");
-        sheets = XLSX.read(data, {type:"array"}).Sheets
+        sheets = XLSX.read(data, {type:"array"}).Sheets;
+        console.log(sheets);
         sheets.keys().forEach(function(item, index){
             if(index == 0)setTimeout(function(){showSheet(sheets[item])});
             var el = document.createElement("span")
