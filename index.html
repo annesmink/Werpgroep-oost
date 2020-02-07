@@ -18,10 +18,12 @@ function getContent(file){
         if (this.readyState == 4 && this.status == 200) {
             //filter out style and script tags and put them in header
             var xml = this.responseXML;
-            [...xml.getElementsByTagName("script"), ...xml.getElementsByTagName("style")].forEach(function(item){
-                console.log(item);
-                document.head.appendChild(item);
-                item.parentElement.removeChild(item);
+            document.head.innerHTML = "";
+            xml.getElementsByTagName("script").forEach(function(item){
+                var newScript = document.createElement("script");
+                var inlineScript = document.createTextNode(item.innerHTML);
+                newScript.appendChild(inlineScript); 
+                document.head.appendChild(newScript);
             });
             document.getElementById("content").appendChild(this.responseXML.getElementsByTagName("BODY")[0]);
         }
