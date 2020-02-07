@@ -35,3 +35,27 @@ header span:hover{
     min-width: 70%;
     height:80%;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  caption {
+      font-size: 20px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  tr:first-child {
+      font-weight: bold;
+  }
