@@ -69,7 +69,7 @@ xhttp.onreadystatechange = function() {
             if(index == 0)setTimeout(function(){showSheet(sheets[item])});
             var el = document.createElement("span")
             el.onclick = function(){showSheet(sheets[item])};
-            header.innerHTML = el;
+            el.innerHTML = item;
             header.appendChild(el);
         });
     }
