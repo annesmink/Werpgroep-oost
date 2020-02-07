@@ -21,7 +21,10 @@ function getContent(file){
             [...xml.getElementsByTagName("script")].forEach(function(item){
                 var newScript = document.createElement("script");
                 if(item.innerHTML) newScript.appendChild(document.createTextNode(item.innerHTML));
-                else newScript.src = item.src;
+                else{
+                    newScript.src = item.src;
+                    newScript.lang = item.lang;
+                }
                 document.head.appendChild(newScript);
             });
             document.getElementById("content").appendChild(xml.getElementsByTagName("BODY")[0]);
