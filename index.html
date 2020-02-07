@@ -18,14 +18,13 @@ function getContent(file){
         if (this.readyState == 4 && this.status == 200) {
             //filter out style and script tags and put them in header
             var xml = this.responseXML;
-            document.head.innerHTML = "";
-            xml.getElementsByTagName("script").forEach(function(item){
+            [...xml.getElementsByTagName("script")].forEach(function(item){
                 var newScript = document.createElement("script");
                 var inlineScript = document.createTextNode(item.innerHTML);
                 newScript.appendChild(inlineScript); 
                 document.head.appendChild(newScript);
             });
-            document.getElementById("content").appendChild(this.responseXML.getElementsByTagName("BODY")[0]);
+            document.getElementById("content").appendChild(xml.getElementsByTagName("BODY")[0]);
         }
     };   
     xhttp.open("GET", file + ".html", true);
