@@ -50,7 +50,7 @@ xhttp.onreadystatechange = function() {
         });
     }
 };   
-xhttp.open("GET", "Wedstrijden.xlsx", true);
+xhttp.open("POST", "Wedstrijden.xlsx", true);
 xhttp.responseType = "arraybuffer";
 setTimeout(function(){xhttp.send()}, 400);
 </script>
