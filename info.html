@@ -1,0 +1,56 @@
+<head>
+    <script lang="javascript" src="xlsx.full.min.js"></script>
+</head>
+<header id="agendaHeader">
+</header>
+<table id="xlsxDisplay"></table>
+
+<script>
+//shows the selected sheet in the table
+function showSheet(sheet){
+    //find out width and height, will break if more then 26 width
+    var split = sheet["!ref"].split(":");
+    var maxWidth = split[1].slice(0, 1).charCodeAt(0);
+    var maxHeight = split[1].slice(1);
+    var minWidth = split[0].slice(0, 1);
+    var currHeight = split[0].slice(1);
+    var table = "<caption>" + sheet[minWidth + currHeight].w + "</caption>"
+    for(currHeight++;currHeight <= maxHeight;currHeight++){
+        var cellText = ""
+        var unEmptyCell = false;
+        for(var currWidth = minWidth.charCodeAt(0);currWidth <= maxWidth;currWidth++){
+            cellText += "<td>"
+            var cell = sheet[ String.fromCharCode(currWidth) + currHeight]
+            if(cell != undefined){
+                unEmptyCell = true;
+                if(cell.r) cellText += cell.r;
+                else cellText += cell.w;
+            }
+            cellText += "</td>"
+        }
+        if(unEmptyCell)table += "<tr>" + cellText + "</tr>"
+    }
+    document.getElementById("xlsxDisplay").innerHTML = table;
+};
+
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var data = new Uint8Array(this.response);
+        //create the buttons
+        var header = document.getElementById("agendaHeader");
+        sheets = XLSX.read(data, {type:"array"}).Sheets;
+        Object.keys(sheets).forEach(function(item, index){
+            if(index == 0)setTimeout(function(){showSheet(sheets[item])});
+            var el = document.createElement("span")
+            el.onclick = function(){showSheet(sheets[item])};
+            el.innerHTML = item;
+            header.appendChild(el);
+        });
+    }
+};   
+xhttp.open("GET", "Gewichten.xlsx", true);
+xhttp.responseType = "arraybuffer";
+setTimeout(function(){xhttp.send()}, 400);
+</script>
