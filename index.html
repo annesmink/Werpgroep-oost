@@ -23,7 +23,9 @@ function getContent(file){
                 else newScript.src = item.src;
                 document.head.appendChild(newScript);
             });
-            document.getElementById("content").appendChild(xml.getElementsByTagName("BODY")[0]);
+            var content = document.getElementById("content");
+            content.innerHTML = "";
+            content.appendChild(xml.getElementsByTagName("BODY")[0]);
         }
     };   
     xhttp.open("GET", file + ".html", true);
