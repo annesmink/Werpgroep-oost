@@ -47,7 +47,7 @@ xhttp.onreadystatechange = function() {
         });
     }
 };   
-xhttp.open("POST", "Gewichten.xlsx", true);
+xhttp.open("GET", "Gewichten.xlsx", true);
 xhttp.responseType = "arraybuffer";
 setTimeout(function(){xhttp.send()}, 400);
 </script>

@@ -26,7 +26,7 @@ function getContent(file){
             document.getElementById("content").appendChild(xml.getElementsByTagName("BODY")[0]);
         }
     };   
-    xhttp.open("POST", file + ".html", true);
+    xhttp.open("GET", file + ".html", true);
     xhttp.responseType = "document";
     xhttp.send()
 }
